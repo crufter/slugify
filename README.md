@@ -1,0 +1,4 @@
+slugify
+=======
+
+For pretty urls.
