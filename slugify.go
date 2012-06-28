@@ -2,7 +2,6 @@ package slugify
 
 import(
 	"regexp"
-	"fmt"
 	"strings"
 )
 
