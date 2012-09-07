@@ -1,8 +1,8 @@
 package main
 
-import(
-	"github.com/opesun/slugify"
+import (
 	"fmt"
+	"github.com/opesun/slugify"
 )
 
 func main() {
