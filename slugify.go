@@ -8,8 +8,8 @@ import (
 func S(str string) string {
 	str = strings.ToLower(strings.Trim(str, " ")) // Trim than Lower-Case
 
-	from := "aáäâeéëeiíiîoóöőôuúüűunç·/_,:;"
-	to := "aaaaeeeeiiiiooooouuuuunc------"
+	from := "áàäâéèëêíìiîóòöőôúùüűnç·/_,:;"
+	to := "aaaaeeeeiiiiooooouuuunc------"
 	i := 0
 	for _, v := range from {
 		str = strings.Replace(str, string(v), string(to[i]), -1) // Remove accents
