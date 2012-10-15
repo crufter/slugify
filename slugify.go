@@ -5,19 +5,52 @@ import (
 	"strings"
 )
 
-func S(str string) string {
-	str = strings.ToLower(strings.Trim(str, " ")) // Trim than Lower-Case
+var replacements = map[string]string{
+	"á": "a",
+	"à": "a",
+	"ä": "a",
+	"â": "a",
+	"é": "e",
+	"è": "e",
+	"ë": "e",
+	"ê": "e",
+	"í": "i",
+	"ì": "i",
+	"i": "i",
+	"î": "i",
+	"ó": "o",
+	"ò": "o",
+	"ö": "o",
+	"ő": "o",
+	"ô": "o",
+	"ú": "u",
+	"ù": "u",
+	"ü": "u",
+	"ű": "u",
+	"ç": "c",
+	"·": "-",
+	"/": "-",
+	"_": "-",
+	",": "-",
+	":": "-",
+	";": "-",
+}
 
-	from := "áàäâéèëêíìiîóòöőôúùüűnç·/_,:;"
-	to := "aaaaeeeeiiiiooooouuuunc------"
-	i := 0
-	for _, v := range from {
-		str = strings.Replace(str, string(v), string(to[i]), -1) // Remove accents
-		i++
+func S(str string) string {
+	str = strings.ToLower(strings.TrimSpace(str)) // Trim, then Lower-Case
+	newstr := ""
+
+	// Iterate over string, for each character check if there is a replacement, if so, append it to newstr, if not, append original value to newstr
+	for _, char := range str {
+		if replacement, ok := replacements[string(char)]; ok {
+			newstr += replacement
+		} else {
+			newstr += string(char)
+		}
 	}
 
-	str = regexp.MustCompile("[^a-z0-9-]").ReplaceAllString(str, "-") // Remove invalid chars (spaces are invalid)
-	str = regexp.MustCompile("-+").ReplaceAllString(str, "-")         // Collapse dashes
+	newstr = regexp.MustCompile("[^a-z0-9-]").ReplaceAllString(newstr, "-") // Remove invalid chars (spaces are invalid)
+	newstr = regexp.MustCompile("-+").ReplaceAllString(newstr, "-")         // Collapse dashes
 
-	return str
+	return newstr
 }
