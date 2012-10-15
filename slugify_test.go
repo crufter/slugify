@@ -1,22 +1,21 @@
-package slugify_test
+package slugify
 
 import (
-	"../slugify"
 	"testing"
 )
 
 // Test Slugify
 func TestSlugify(t *testing.T) {
-	if slugify.S("Hello World") != "hello-world" {
+	if S("Hello World") != "hello-world" {
 		t.Fail()
 	}
-	if slugify.S("Hello World69") != "hello-world69" {
+	if S("Hello World69") != "hello-world69" {
 		t.Fail()
 	}
-	if slugify.S("Hello           World????????") != "hello-world-" {
+	if S("Hello           World????????") != "hello-world-" {
 		t.Fail()
 	}
-	if slugify.S("aáäâeéëeiíiîoóöőôuúüűunç·/_,:;") != "aaaaeeeeiiiiooooouuuuunc-" {
+	if S("aáäâeéëeiíiîoóöőôuúüűunç·/_,:;") != "aaaaeeeeiiiiooooouuuuunc-" {
 		t.Fail()
 	}
 }
